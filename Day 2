@@ -1,0 +1,23 @@
+class Solution {
+    public int pivotIndex(int[] nums) {
+        int left = 0;
+        int right = 0;
+        int n = nums.length;
+        if(n==1)
+            return 0;
+
+        int[] sum = new int[n];
+        sum[0] = nums[0];
+        for(int i=0;i<n-1;i++){
+            sum[i+1] = sum[i] + nums[i+1];
+        }
+        int total_sum = sum[n-1];
+        for(int i=0;i<n;i++){
+            left = sum[i] - nums[i];
+            right = total_sum - sum[i];
+            if(left == right)
+                return i;
+        }
+        return -1;
+    }
+}
