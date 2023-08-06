@@ -1,0 +1,10 @@
+class Solution {
+    public boolean rotateString(String s, String goal) {
+        // concatenate s with s and then check if new s contains goal
+        String ns = s+s;
+        if(s.length() == goal.length() && ns.contains(goal))
+            return true;
+        else
+            return false;
+    }
+}
