@@ -1,0 +1,53 @@
+class Solution {
+    public boolean findRotation(int[][] mat, int[][] target) {
+        // int n = mat.length;
+        // Boolean ans = true;
+        // for(int k=0;k<4;k++){
+        // // 1. transpose 
+        // for(int i=0;i<n-1;i++){
+        //     for(int j=i+1;j<n;j++){
+        //         int temp = mat[i][j];
+        //         mat[i][j] = mat[j][i];
+        //         mat[j][i] = temp;
+        //     }
+        // }
+        // // 2. reverse each row
+        // for(int i=0;i<n;i++){
+        //     for(int j=0;j<n/2;j++){
+        //         int temp = mat[i][j];
+        //         mat[i][j] = mat[i][n-j-1];
+        //         mat[i][n-j-1] = temp;
+        //     }
+        // }
+
+        // for(int i=0;i<n;i++){
+        //     for(int j=0;j<n;j++){
+        //         if(mat[i][j] != target[i][j])
+        //             ans = false;
+        //     }
+        // }
+        // if(ans) return ans;
+        // ans = true;
+        // }
+        // return false;
+        // TC = O(4n^2) SC = O(1)
+
+    // optimal approach check on index without roratio=ng matrix
+        int count90 = 0, count180 = 0, count270 = 0, count360 = 0;
+        int n = mat.length;
+
+        for(int i = 0; i < n; i++){
+            for(int j = 0; j < n; j++){
+                if(mat[i][j] == target[n - j - 1][i]) count90++;
+                if(mat[i][j] == target[n - i - 1][n - j - 1]) count180++;
+                if(mat[i][j] == target[j][n - i - 1]) count270++; 
+                if(mat[i][j] == target[i][j]) count360++;
+            }
+        }
+
+        if((count90 == n * n) || (count180 == n * n) || (count270 == n * n) || (count360 == n * n)) 
+            return true;
+        else
+            return false;
+    }
+}
