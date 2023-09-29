@@ -1,0 +1,24 @@
+public class Solution {
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        if(headA == null || headB == null)
+            return null;
+
+        ListNode a = headA; // Dummy node for list 1
+        ListNode b = headB; // Dummy node for list 2
+
+        // a nd b have diff len. So we will stop the loop after second iteration
+        // a and b will only be equal at intersection point and when both are together null
+        while(a!=b){
+            if(a == null)
+                a  = headB;
+            else
+                a = a.next;
+            
+            if(b == null)
+                b = headA;
+            else
+                b = b.next;
+        }
+        return a;
+    }
+}
