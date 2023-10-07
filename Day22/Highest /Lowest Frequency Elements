@@ -1,0 +1,37 @@
+import java.util.HashMap;
+
+public class Solution {
+    public static int[] getFrequencies(int []v) {
+        // Write Your Code Here
+        int n = v.length;
+        HashMap<Integer,Integer> hmap = new HashMap<>();
+        //pre-compute
+        for(int i=0;i<n;i++){
+            if(hmap.containsKey(v[i]))
+                hmap.put(v[i],hmap.get(v[i])+1);
+            else
+                hmap.put(v[i],1);
+        }
+        //fetching
+        int max = v[0];
+        int min = v[0];
+        for(int i=0;i<n;i++){
+            if(hmap.get(v[i])>=hmap.get(max)){
+                if(hmap.get(v[i])==hmap.get(max))
+                    max = Integer.min(v[i],max);
+                else
+                    max = v[i];
+            }
+            if(hmap.get(v[i])<=hmap.get(min)){
+                if(hmap.get(v[i])==hmap.get(min))
+                    min = Integer.min(v[i],min);
+                else
+                    min = v[i];
+            }
+        }
+        int[] arr = new int[2];
+        arr[0] = max;
+        arr[1] = min;
+        return arr;
+    }
+}
