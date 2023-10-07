@@ -1,0 +1,23 @@
+import java.util.HashMap;
+public class Solution {
+    public static int[] countFrequency(int n, int x, int []nums){
+        // Write your code here.
+        HashMap<Integer,Integer> hmap=new HashMap<>();
+        for(int i=1;i<=n;i++){
+            hmap.put(i,0);
+        }
+        // pre-compute
+        for(int i=0;i<n;i++){
+            if(hmap.containsKey(nums[i])){
+                hmap.put(nums[i],hmap.get(nums[i])+1);
+            }
+        }
+        int j=0;
+        // fetching
+        for(int val:hmap.keySet()){
+            nums[j] = hmap.get(val);
+            j++;
+        }
+        return nums;
+    }
+}
