@@ -1,0 +1,44 @@
+class Solution {
+    public int longestConsecutive(int[] nums) {
+        // brute force  TC=O(n*n)
+        int n = nums.length;
+    //     int longest = 0;
+    //     for(int i=0;i<n;i++){
+    //         int count = 1;
+    //         int x = nums[i];
+    //         while(ls(nums, x+1, n)){
+    //             x  = x+1;
+    //             count++;
+    //         }
+    //         longest = Math.max(longest,count);
+    //     }
+    //     return longest;
+    // }
+    // public boolean ls(int[] nums, int num, int n){
+    //     for(int i=0;i<n;i++){
+    //         if(nums[i]==num)
+    //             return true;
+    //     }
+    //     return false;
+
+    // better solution TC O(n logn) + O(n)
+    Arrays.sort(nums);
+    int count = 0;
+    int longest = 0;
+    int beforeSmaller = Integer.MIN_VALUE;
+    for(int i=0;i<n;i++){
+        if(nums[i]-1 == beforeSmaller){
+            count++;
+            beforeSmaller = nums[i];
+        }
+        else if(nums[i] != beforeSmaller){
+            count=1;
+            beforeSmaller = nums[i];
+        }
+        longest = Math.max(longest, count);
+    }
+    return longest;
+
+    //
+    }
+}
